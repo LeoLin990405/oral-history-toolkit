@@ -1,0 +1,37 @@
+[
+  {
+    "term": "半导体所",
+    "count": 1,
+    "kind": "机构",
+    "canonical": "",
+    "variants": []
+  },
+  {
+    "term": "课题组",
+    "count": 1,
+    "kind": "机构",
+    "canonical": "",
+    "variants": []
+  },
+  {
+    "term": "郑所",
+    "count": 1,
+    "kind": "机构",
+    "canonical": "",
+    "variants": []
+  },
+  {
+    "term": "八六三计划",
+    "count": 1,
+    "kind": "项目",
+    "canonical": "",
+    "variants": []
+  },
+  {
+    "term": "项目",
+    "count": 1,
+    "kind": "项目",
+    "canonical": "",
+    "variants": []
+  }
+]

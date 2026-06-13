@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv*/
+venv/
+
+# macOS
+.DS_Store
+
+# 用户的真实访谈项目数据不入库（保护涉密内容）——仅保留 demo 合成样例
+oral-history-master/projects/*
+!oral-history-master/projects/demo/
+
+# 临时文件
+*.tmp
+_scratch/

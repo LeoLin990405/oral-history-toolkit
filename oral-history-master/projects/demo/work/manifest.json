@@ -1,0 +1,25 @@
+{
+  "project": "demo",
+  "created": "2026-06-13T21:35:22+08:00",
+  "pass": 1,
+  "chunks": [
+    {
+      "id": "chunk_001",
+      "file": "work/chunks/chunk_001.md",
+      "chars": 133,
+      "status": "edited"
+    },
+    {
+      "id": "chunk_002",
+      "file": "work/chunks/chunk_002.md",
+      "chars": 193,
+      "status": "edited"
+    },
+    {
+      "id": "chunk_003",
+      "file": "work/chunks/chunk_003.md",
+      "chars": 140,
+      "status": "edited"
+    }
+  ]
+}

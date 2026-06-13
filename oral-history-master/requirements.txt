@@ -1,0 +1,7 @@
+# oral-history-master 依赖
+# 核心流水线（ingest / chunk / consistency / diff / package）仅用 Python 3.9+ 标准库，
+# 开箱即跑，无需安装任何东西。
+#
+# 以下为「可选」依赖，仅在导入对应格式的转写稿时需要：
+python-docx>=1.1.0      # 可选：导入 .docx 转写稿（很多转写服务导出 Word）
+openpyxl>=3.1.0         # 可选：导入 .xlsx 表格式转写（带时间戳列）
