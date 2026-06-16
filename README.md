@@ -98,15 +98,17 @@ flowchart TD
 
 ## 方法论谱系
 
-规则蒸馏自 11 部口述史方法论文献，详见 [`references/methodology.md`](oral-history-master/references/methodology.md)：
+规则蒸馏自口述史方法论经典，按 **P0/P1/P2** 分级（全表见 [`references/methodology.md`](oral-history-master/references/methodology.md)），由口述史研究者 **Kelvin（中科大 科技史）** 系统梳理：
 
-| 来源 | 核心约束 |
-|---|---|
-| **熊卫民**（科学家口述史） | 存真优先；受访人审阅签字；科技体制术语（室/所/院/学部）原样 |
-| **张藜**（老科学家学术成长资料采集工程） | 采集—整理—入库规范；多重材料互证；人名机构可核 |
-| **王扬宗**（科学史） | 科学事件、机构沿革的史实严谨；不用"通顺"掩盖事实模糊 |
-| **Donald Ritchie《Doing Oral History》** | 区分"清理"与"改写"的职业伦理；授权与署名 |
-| **Alessandro Portelli《Luigi Trastulli 之死》** | **口误、矛盾、不确定本身是史料**，不可被"修正"抹平 |
+| 级别 | 来源 | 核心约束 |
+|---|---|---|
+| P0 | **张藜《如何进行口述史访谈》** | 五步整理流程；存真优先；受访人审阅签字 |
+| P0 | **《中华口述历史工作实务规范》(2023)** | 六阶段流程；逐句对应；改动可追溯；三方签字 |
+| P1 | **Ritchie《大家来做口述历史》** | "错误话头"处理；方言不靠变形拼写标记 |
+| P1 | **陈墨《口述历史门径》** | 双本制（档案本/传播本）；唐德刚式改写之诫 |
+| P1 | **《牛津口述史手册》** | "生/熟"光谱；停顿犹豫的方法论价值 |
+| P2 | **熊卫民《对于历史，科学家有话说》** | 去口语化但不失口语感；脚注五功能 |
+| — | **Portelli《Luigi Trastulli 之死》** | **口误、矛盾、不确定本身是史料**，不可被"修正"抹平 |
 
 ## A / B / C / D 处理体系
 
@@ -168,7 +170,7 @@ oral-history-toolkit/
 │   ├── SKILL.md                      7 步串行门控流水线编排 + 执行纪律
 │   ├── requirements.txt              核心零依赖；docx/xlsx 可选
 │   ├── references/                   渐进披露知识库
-│   │   ├── methodology.md            11 部文献蒸馏：存真哲学 + A/B/C/D
+│   │   ├── methodology.md            权威文献分级蒸馏：存真哲学 + A/B/C/D
 │   │   ├── surveyor.md               方针师角色
 │   │   ├── editor.md                 整理者角色
 │   │   ├── examples.md               5 个金标准范例（执行尺度基准）
@@ -230,7 +232,7 @@ Pass 2 流程见 [`workflows/pass2-bookify.md`](oral-history-master/workflows/pa
 
 > ⚠ 公开仓库，**请勿在 issue 里粘贴任何真实访谈内容**；举例请用脱敏/编造的片段或只描述现象。
 
-这套工具是与口述史研究者共创的：研究者出方法论、定门道并实测反馈，工程持续打磨。后续可按需共建更贴合具体流程的工作流。
+这套工具是**共创**的：方法论与文献谱系（张藜、中华规范、Ritchie、陈墨、牛津手册、熊卫民等）由口述史研究者 **Kelvin（中科大 科技史）** 系统梳理并实测反馈，工程、流水线与一致性机制由 [LeoLin990405](https://github.com/LeoLin990405) 实现。想用自己的语料持续把它喂得更好（拆书蒸馏 → 规则/范例 → held-out 验证），见 [CONTRIBUTING-methodology.md](CONTRIBUTING-methodology.md)。
 
 ---
 
