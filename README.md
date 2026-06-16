@@ -1,5 +1,7 @@
 # 口述史整理工具箱 · Oral History Toolkit
 
+[![tests](https://github.com/LeoLin990405/oral-history-toolkit/actions/workflows/test.yml/badge.svg)](https://github.com/LeoLin990405/oral-history-toolkit/actions/workflows/test.yml)
+
 > 把录音转写稿，按口述史方法论，转换成**忠实、可读、可供受访人审阅签字**的整理稿。
 > 专为长篇访谈（10–20 万字级）设计，**数据全程在本地，工具不联网、不外传任何内容**。
 

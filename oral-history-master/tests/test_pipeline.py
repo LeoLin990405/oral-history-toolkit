@@ -16,6 +16,7 @@ import config as C          # noqa: E402
 import chunker              # noqa: E402
 import fidelity_checker as F  # noqa: E402
 import transcript_ingest as T  # noqa: E402
+import glossary_extractor as G  # noqa: E402
 
 
 class TestConfig(unittest.TestCase):
@@ -96,6 +97,21 @@ class TestFidelity(unittest.TestCase):
         ents = F._entities("我在中科院半导体研究所，郑所长很照顾")
         self.assertIn("中科院半导体研究所", ents)
         self.assertIn("郑", ents)  # 称谓锚定
+
+
+class TestGlossary(unittest.TestCase):
+    def test_clean_candidate(self):
+        self.assertEqual(G._clean_candidate("我们那个课题组"), "课题组")
+        self.assertIsNone(G._clean_candidate("您是哪一年到所"))  # 含停用字 → 丢弃
+
+    def test_cluster_containment(self):
+        cands = [{"term": "半导体所", "kind": "机构"},
+                 {"term": "中科院半导体所", "kind": "机构"},
+                 {"term": "课题组", "kind": "机构"}]
+        clusters = G._cluster(cands)
+        grp = next(c for c in clusters if "半导体所" in c)
+        self.assertIn("中科院半导体所", grp)        # 子串 → 同组
+        self.assertTrue(any(c == ["课题组"] for c in clusters))  # 无关 → 独立
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@
 | `config.py` | 共享契约：目录结构 / 标记约定 / 分块参数 / term_lock 解析 | （被其它脚本 import） |
 | `project_manager.py` | 建项目 / 导入转写稿 / 校验 / 进度 | `init` `import` `validate` `status` |
 | `transcript_ingest.py` | 清洗 + 说话人分离 + 时间戳归一（不改字） | `sources/raw.*` → `sources/ingested.md` |
-| `glossary_extractor.py` | 专名候选预扫（机构/项目/人名候选） | `ingested.md` → `work/glossary_candidates.json` |
+| `glossary_extractor.py` | 专名候选预扫 + **变体聚类**（揪出已不一致的同一专名写法） | `ingested.md` → `work/glossary_candidates.json` + `work/term_table_draft.md`（可粘贴进 term_lock） |
 | `chunker.py` | 分块（边界切分 + 重叠 + 进度锚） | `ingested.md` → `work/chunks/chunk_NNN.md` |
 | `consistency_checker.py` | 跨块术语 / 标签 / 标记一致性校验 | `work/edited/*` + `term_lock.md` → `review/一致性报告.md` |
 | `fidelity_checker.py` | 忠实度三信号：①字数比(error 门) ②新增数字/专名(疑捏造) ③不确定删除(伪造确定性) | `chunks/` vs `edited/` + `term_lock.md` → `review/忠实度报告.md` |

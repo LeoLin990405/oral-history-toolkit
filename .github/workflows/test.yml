@@ -1,0 +1,21 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # 核心流水线零第三方依赖，无需 pip install
+      - name: 语法检查 (py_compile)
+        run: python -m py_compile oral-history-master/scripts/*.py oral-history-master/tests/*.py
+      - name: 单元测试 (unittest)
+        working-directory: oral-history-master
+        run: python -m unittest discover tests -v
