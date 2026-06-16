@@ -42,7 +42,7 @@
 
 ### 2.2 文献谱系（P0／P1／P2 分级）
 
-规则系统提炼自下列口述史方法论文献，规则冲突时按级别取舍，同级取更保守方案。文献谱系由本项目方法论合作者 **Kelvin（中国科学技术大学 科技史）** 梳理；完整对照见 [`references/methodology.md`](oral-history-master/references/methodology.md)。
+规则系统提炼自下列口述史方法论文献，规则冲突时按级别取舍，同级取更保守方案。文献谱系由本项目方法论合作者 **Kelvin（中国科学技术大学 科技史，[@InsightHist](https://github.com/InsightHist)）** 梳理；完整对照见 [`references/methodology.md`](oral-history-master/references/methodology.md)。
 
 | 级别 | 文献 | 主要约束 |
 |---|---|---|
@@ -170,7 +170,7 @@ oral-interview-transcription-skill/
 
 ```
 口述访谈文字处理工具（oral-interview-transcription-skill）.
-方法论：Kelvin（中国科学技术大学 科技史）；工程实现：LeoLin990405. 2026.
+方法论：Kelvin（@InsightHist，中国科学技术大学 科技史）；工程实现：LeoLin990405. 2026.
 https://github.com/LeoLin990405/oral-interview-transcription-skill
 ```
 
@@ -178,6 +178,6 @@ https://github.com/LeoLin990405/oral-interview-transcription-skill
 
 ## 作者与致谢
 
-本工具系**共创**成果：方法论梳理与文献谱系由口述史研究者 **Kelvin（中国科学技术大学 科技史）** 完成并提供实测反馈；多角色流水线、一致性与忠实度机制、工程实现由 [**LeoLin990405**](https://github.com/LeoLin990405) 完成。欢迎以自身语料持续改进（见 [CONTRIBUTING-methodology.md](CONTRIBUTING-methodology.md)）；反馈见 [FEEDBACK.md](FEEDBACK.md)。
+本工具系**共创**成果：方法论梳理与文献谱系由口述史研究者 [**Kelvin（中国科学技术大学 科技史）· @InsightHist**](https://github.com/InsightHist) 完成并提供实测反馈；多角色流水线、一致性与忠实度机制、工程实现由 [**LeoLin990405**](https://github.com/LeoLin990405) 完成。欢迎以自身语料持续改进（见 [CONTRIBUTING-methodology.md](CONTRIBUTING-methodology.md)）；反馈见 [FEEDBACK.md](FEEDBACK.md)。
 
 > 公开仓库——请勿在 issue 中粘贴任何真实访谈内容，举例请用脱敏或合成片段。
