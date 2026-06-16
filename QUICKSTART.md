@@ -16,8 +16,8 @@ python3 --version      # 看到 3.9+ 即可
 把代码拿到本地：
 
 ```bash
-git clone https://github.com/LeoLin990405/oral-history-toolkit.git
-cd oral-history-toolkit
+git clone https://github.com/LeoLin990405/oral-interview-transcription-skill.git
+cd oral-interview-transcription-skill
 ```
 
 > 核心流水线**零第三方依赖**，开箱即用。只有当你的转写稿是 `.docx`/`.xlsx` 时才需要：
