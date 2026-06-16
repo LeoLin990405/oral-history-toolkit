@@ -44,17 +44,23 @@ def chunk_units(units: list[str], target: int, hard_max: int) -> list[list[str]]
     cur: list[str] = []
     cur_len = 0
     for u in units:
-        # 单段超过 hard_max → 句子级再切
+        # 单段超过 hard_max → 句子级再切（保说话人标签延续）
         if len(u) > hard_max:
             if cur:
                 chunks.append(cur); cur, cur_len = [], 0
-            sent_buf, sent_len = [], 0
+            lab_m = re.match(r"^(【[^】]+】)", u)
+            lab = lab_m.group(1) if lab_m else ""
+            pieces, sent_buf, sent_len = [], [], 0
             for s in split_sentences(u):
                 if sent_len + len(s) > hard_max and sent_buf:
-                    chunks.append([" ".join(sent_buf)]); sent_buf, sent_len = [], 0
+                    pieces.append(" ".join(sent_buf)); sent_buf, sent_len = [], 0
                 sent_buf.append(s); sent_len += len(s)
             if sent_buf:
-                chunks.append([" ".join(sent_buf)])
+                pieces.append(" ".join(sent_buf))
+            for i, p in enumerate(pieces):
+                if i > 0 and lab and not p.lstrip().startswith("【"):
+                    p = f"{lab}（续）{p}"   # 续块补回说话人，避免"谁在说"丢失
+                chunks.append([p])
             continue
         if cur_len + len(u) > target and cur:
             chunks.append(cur); cur, cur_len = [], 0

@@ -15,9 +15,11 @@
 | `glossary_extractor.py` | 专名候选预扫（机构/项目/人名候选） | `ingested.md` → `work/glossary_candidates.json` |
 | `chunker.py` | 分块（边界切分 + 重叠 + 进度锚） | `ingested.md` → `work/chunks/chunk_NNN.md` |
 | `consistency_checker.py` | 跨块术语 / 标签 / 标记一致性校验 | `work/edited/*` + `term_lock.md` → `review/一致性报告.md` |
-| `fidelity_checker.py` | 忠实度硬门：字数比抓添写/删过头 | `chunks/` vs `edited/` → `review/忠实度报告.md` |
+| `fidelity_checker.py` | 忠实度三信号：①字数比(error 门) ②新增数字/专名(疑捏造) ③不确定删除(伪造确定性) | `chunks/` vs `edited/` + `term_lock.md` → `review/忠实度报告.md` |
 | `diff_reporter.py` | 对照稿（原始 ⟷ 整理稿，真·可追溯） | `chunks/` + `edited/` → `review/对照稿.md` |
 | `package_review.py` | 拼接整理稿 + 汇总 ⚠ 待核对清单 | `edited/` → `output/整理稿.md` + `review/待核对清单.md` |
+| `report.py` | 质检总览看板（进度+一致性+忠实度+⚠+交付判定） | 各报告 → `review/质检总览.md` |
+| `run_pipeline.py` | 编排器：一条命令跑确定性段 | `prep`(ingest→glossary→chunker) / `check`(consistency→fidelity→diff→package→report) |
 
 ## 典型一次完整跑（单篇）
 
@@ -38,3 +40,23 @@ python3 package_review.py        laozhang_interview
 ```
 
 20 万字续跑 / 换窗口：见 `workflows/resume-execute.md`。
+
+## 用编排器更省事
+
+```bash
+python3 run_pipeline.py prep  我的访谈      # ingest → glossary → chunker（Surveyor/Editor 之前）
+#  〔Surveyor 填 term_lock；Editor 逐块整理〕
+python3 run_pipeline.py check 我的访谈      # consistency → fidelity → diff → package → report
+cat ../projects/我的访谈/review/质检总览.md  # 一页看交付判定
+```
+
+## 测试
+
+确定性逻辑有单元测试（零依赖）：
+
+```bash
+cd oral-history-master && python3 -m unittest discover tests
+```
+
+覆盖：术语解析（含子串跳过）/ 数字归一（一九五九→1959、年份补全容差）/ 分块边界与说话人延续 /
+说话人识别与合并 / 忠实度启发式。**改脚本后先跑通测试再提交。**

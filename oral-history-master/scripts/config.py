@@ -118,3 +118,56 @@ def parse_term_lock(path: Path) -> list[dict]:
             "note": cells[3] if len(cells) > 3 else "",
         })
     return rows
+
+
+# ── 不确定表述（R4：删除即"伪造确定性"，fidelity_checker 检测）──────────────────
+UNCERTAINTY_MARKERS = [
+    "大概", "大约", "也许", "可能", "好像", "似乎", "约莫", "差不多", "估计",
+    "兴许", "记不清", "记不太清", "记不大清", "印象中", "隐约", "说不准", "说不清",
+]
+
+# 副语言标记（A 类特例：保留，不当噪音删）
+PARALINGUISTIC_RE = (
+    r"[（(【\[]\s*(?:笑|大笑|苦笑|哭|长叹|叹气|停顿|沉默|掌声|拍桌|摇头|点头|"
+    r"沉思|哽咽|录音不清|听不清|此处不清|inaudible)[^）)】\]]*[）)】\]]"
+)
+
+# ── 数字归一（用于 fidelity 的"新增数字/年份=疑似捏造"检测）────────────────────
+_CN_DIGIT = {"〇": "0", "零": "0", "一": "1", "二": "2", "两": "2", "三": "3",
+             "四": "4", "五": "5", "六": "6", "七": "7", "八": "8", "九": "9"}
+_CN_UNIT = {"十": 10, "百": 100, "千": 1000, "万": 10000}
+_ARABIC_RE = re.compile(r"\d+")
+_CN_NUM_RE = re.compile(r"[〇零一二两三四五六七八九十百千万]{2,}")  # ≥2 字，避开"一个/第一"噪音
+
+
+def _cn_to_value(seq: str):
+    """中文数字串 → 数值字符串；纯数字字符按年份逐位拼（一九五九→1959），否则位值解析。失败 None。"""
+    if all(c in _CN_DIGIT for c in seq):
+        return "".join(_CN_DIGIT[c] for c in seq)
+    total = section = num = 0
+    for c in seq:
+        if c in _CN_DIGIT:
+            num = int(_CN_DIGIT[c])
+        elif c in _CN_UNIT:
+            u = _CN_UNIT[c]
+            if u == 10000:
+                total = (total + section + num) * u
+                section = num = 0
+            else:
+                section += (num or 1) * u
+                num = 0
+        else:
+            return None
+    val = total + section + num
+    return str(val) if val else None
+
+
+def extract_number_values(text: str) -> set:
+    """抽取文本里的数字值（阿拉伯 + 中文数字归一），先剥 〔注〕避免污染。"""
+    text = re.sub(r"〔[^〕]*〕", "", text)
+    vals = set(_ARABIC_RE.findall(text))
+    for m in _CN_NUM_RE.findall(text):
+        v = _cn_to_value(m)
+        if v:
+            vals.add(v)
+    return vals
